@@ -1,6 +1,7 @@
 package e260421;
 
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -27,6 +28,25 @@ public class OutputExample {
             fos.write(bytes);
         } catch (IOException e) {
 
+        }
+
+        char[] chars = {'J', 'A', 'V', 'A'};
+        String lang = "Language";
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter("config.properties");
+            //이어쓰기
+            fw.write(chars);
+            fw.write("\n-----------\n");
+            fw.write(lang);
+        } catch (IOException e) {
+        }
+        finally {
+            try {
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
