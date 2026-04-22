@@ -1,11 +1,36 @@
 package e260421;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputStreamReaderCode {
+public class InputExample {
     public static void main(String[] args) {
+        // InputStream : 바이트 기반 입력 최상위 클래스
+        // InputStream fis = new FileInputStream();
+        // InputStream bis = new BufferedInputStream();
+        // InputStream dis = new DataInputStream();
+
+        // Reader : 문자 기반 입력 최상위 클래스
+        // Reader fr = new FileReader();
+        // Reader bis = new BufferedReader();
+        // Reader dis = new InputStreamReader();
+        
+        try (FileInputStream fis = new FileInputStream("config.properties")) {
+            byte[] b = new byte[50];
+            fis.read(b);
+            for (byte x : b) {
+                System.out.println((char) x);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("config.properties 는 없는 파일입니다.");
+        } catch (IOException e) {
+            System.out.println(e);
+        } catch (NullPointerException e) {
+
+        }
+        
         try (InputStreamReader reader = new InputStreamReader(new FileInputStream("config.properties"))) {
             //주객체 : FileInputStream
             //보조객체 : InputStreamReader

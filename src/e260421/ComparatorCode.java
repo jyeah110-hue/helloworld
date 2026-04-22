@@ -27,8 +27,13 @@ class Person {
     }
 }
 
-//Comparator 기능하는 클래스에는 compare 하나만 정의해야 한다.
-//다른 기능 있을경우 인식 못함
+//Comparable.compareTo 
+// -> 클래스 자체에 '기본'정렬 기준을 정의(클래스 내부에 정의)
+// -> 1개만 가능
+//Comparator.compare 
+// -> 외부에서 정렬 기준을 따로 정의
+// -> 여러 정렬기준 가능, 클래스 수정 없이 사용가능
+// -> 상황에 따라 다르게 정렬
 class PersonComparator implements Comparator<Person> {
     @Override
     public int compare(Person p1, Person p2) {
@@ -36,7 +41,7 @@ class PersonComparator implements Comparator<Person> {
     }
 }
 
-public class UserComparatorCode {
+public class ComparatorCode {
     public static void main(String[] args) {
         Set<Person> ts = new TreeSet<>(new PersonComparator());
         ts.add(new Person(4, 83));
